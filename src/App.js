@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import Container from "./components/Container";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-import CobroPage from "./content/CobroPage";
+import PagosPage from "./content/PagosPage";
 import Home from "./content/Home";
 import LoginPage from "./content/LoginPage";
 import PacientesPage from "./content/PacientesPage";
@@ -36,10 +36,10 @@ const App = ({ loggedIn, logout }) => {
             />
 
             <Route
-              path="/cobros"
+              path="/pagos"
               element={
                 <ProtectedRoute open={loggedIn}>
-                  <CobroPage />
+                  <PagosPage />
                 </ProtectedRoute>
               }
             />

@@ -92,10 +92,10 @@ const Header = ({ loggedIn, logout }) => {
                     aria-labelledby="navbarDropdown"
                   >
                     <Link
-                      to="/cobro"
+                      to="/pagos"
                       className="dropdown-item"
                     >
-                      Cobro
+                      Pagos
                     </Link>
                   </div>
                 </li>
