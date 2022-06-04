@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ loggedIn, logout }) => {
+const Header = ({ loggedIn, logout, name }) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -123,7 +123,7 @@ const Header = ({ loggedIn, logout }) => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Admin <span className="caret"></span>
+                    {name} <span className="caret"></span>
                   </a>
 
                   <div

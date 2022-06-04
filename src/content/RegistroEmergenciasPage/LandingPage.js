@@ -6,7 +6,7 @@ import "./_landing-page.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from "axios";
-import TablePayments from "../../components/Table/TablePayments";
+import TableERs from "../../components/Table/TableERs";
 
 const emergencyRecordsReducer = (state, action) => {
   if (action.type === "EMERGENCY_RECORDS") {
@@ -57,7 +57,7 @@ const RegistroEmergenciasPage = ({ token }) => {
           {!erState.has && (
             <h3 className="text-center">No hay datos por mostrar.</h3>
           )}
-          {/* {erState.has && <TablePayments rows={erState.value} />} */}
+          {erState.has && <TableERs rows={erState.value} />}
         </div>
       </div>
     </>

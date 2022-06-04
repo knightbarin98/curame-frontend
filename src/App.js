@@ -19,11 +19,11 @@ import PacientesPage from "./content/PacientesPage";
 import RegistroEmergenciasPage from "./content/RegistroEmergenciasPage";
 import UsuariosPage from "./content/UsuariosPage";
 
-const App = ({ loggedIn, logout }) => {
+const App = ({ loggedIn, logout, name }) => {
   return (
     <>
       <Router>
-        <Header logout={logout} loggedIn={loggedIn} />
+        <Header logout={logout} loggedIn={loggedIn} name={name}/>
         <Container>
           <Routes>
             <Route
@@ -88,6 +88,7 @@ const App = ({ loggedIn, logout }) => {
 
 const mapStateProps = (state) => ({
   loggedIn: !!state.token.accessToken,
+  name: state.profile.username
 });
 
 const mapDispatchToProps = (dispatch) => ({

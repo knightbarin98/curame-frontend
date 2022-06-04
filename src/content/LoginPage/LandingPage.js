@@ -3,7 +3,13 @@ import jwtDecode from "jwt-decode";
 import React, { useEffect, useReducer, useState } from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { receiveDataProfile } from "../../actions/profileActions";
+import {
+  receiveDataUsername,
+  receiveDataEmail,
+  receiveDataProfile,
+  receiveDataName,
+  receiveDataRole,
+} from "../../actions/profileActions";
 import { recieveAccessToken } from "../../actions/tokenActions";
 
 import "./_landing-page.scss";
@@ -105,20 +111,15 @@ const LoginPage = ({ receiveProfile, receiveToken }) => {
           }
         )
         .then((response) => {
-          const dataProfile = jwtDecode(
-            response.data.access_token
-          );
-          console.log(dataProfile);
-          receiveDataProfile({
-            username: dataProfile.user_name,
-            firstname: dataProfile.nombre,
-            lastname: dataProfile.apellido,
-            email: dataProfile.email,
-            profile: dataProfile.profile_1,
-            role: dataProfile.authorities[0],
-          });
+          const dataProfile = jwtDecode(response.data.access_token);
+          const username = dataProfile["user_name"];
+          const name = dataProfile["nombre"] + dataProfile["apellido"];
+          const email = dataProfile["email"];
+          const profile = dataProfile["profile_1"];
+          const role = dataProfile["authorities"][0];
+          receiveProfile(username, name, email, profile, role);
           receiveToken(response.data.access_token);
-          return <Navigate to="/home" replace/>
+          return <Navigate to="/home" replace />;
         })
         .catch((err) => {
           // console.log('error', { ...err });
@@ -214,7 +215,13 @@ const LoginPage = ({ receiveProfile, receiveToken }) => {
 const mapStateProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  receiveProfile: (data) => dispatch(receiveDataProfile(data)),
+  receiveProfile: (username, name, email, profile, role) => {
+    dispatch(receiveDataUsername(username));
+    dispatch(receiveDataName(name));
+    dispatch(receiveDataEmail(email));
+    dispatch(receiveDataProfile(profile));
+    dispatch(receiveDataRole(role));
+  },
   receiveToken: (accessToken) => dispatch(recieveAccessToken(accessToken)),
 });
 
